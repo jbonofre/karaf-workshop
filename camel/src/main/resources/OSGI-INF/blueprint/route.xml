@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="bookingService" interface="net.nanthrax.karaf.workshop.common.BookingService"/>
+
+    <bean id="bookingProcessor" class="net.nanthrax.karaf.workshop.camel.BookingProcessor">
+        <property name="bookingService" ref="bookingService"/>
+    </bean>
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <route>
+            <from uri="timer:fire?period=5000"/>
+            <process ref="bookingProcessor"/>
+            <to uri="log:BCNJUG"/>
+            <to uri="file:/tmp/bookings"/>
+        </route>
+    </camelContext>
+
+</blueprint>

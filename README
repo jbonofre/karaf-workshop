@@ -1,0 +1,13 @@
+Apache Karaf Workshop
+---------------------
+
+This simple project illustrates development of some basic features provided by Apache Karaf.
+
+It creates a small Airline Booking application using the following different modules:
+
+* common contains the describe of the BookingService and the associated model POJO
+* inmemory contains implementation of the BookingService with an in-memory storage
+* command provides a set of Karaf shell commands to manipulate the BookingService
+* web provides a servlet to manipulate the BookingService
+(* camel provides Camel routes to manipulate the BookingService)
+* features provides a Karaf feature ready to use for the application provisioning

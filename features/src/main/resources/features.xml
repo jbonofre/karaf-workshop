@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="karaf-workshop-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+    <feature name="workshop-common" description="BookingService" version="${project.version}">
+        <bundle>mvn:net.nanthrax.karaf.workshop/net.nanthrax.karaf.workshop.common/${project.version}</bundle>
+    </feature>
+
+    <feature name="workshop-inmemory" description="InMemory implementation of the BookingService" version="${project.version}">
+        <feature version="${project.version}">workshop-common</feature>
+        <bundle>mvn:net.nanthrax.karaf.workshop/net.nanthrax.karaf.workshop.inmemory/${project.version}</bundle>
+    </feature>
+
+    <feature name="workshop-command" description="Shell command to manipulate the BookingService" version="${project.version}">
+        <feature version="${project.version}">workshop-common</feature>
+        <bundle>mvn:net.nanthrax.karaf.workshop/net.nanthrax.karaf.workshop.command/${project.version}</bundle>
+    </feature>
+
+    <feature name="workshop-web" description="Web frontend to booking service" version="${project.version}">
+        <feature version="${project.version}">workshop-common</feature>
+        <feature>war</feature>
+        <bundle>mvn:net.nanthrax.karaf.workshop/net.nanthrax.karaf.workshop.web/${project.version}</bundle>
+    </feature>
+
+    <feature name="workshop-camel" version="${project.version}">
+        <feature version="${project.version}">workshop-common</feature>
+        <feature>camel-blueprint</feature>
+        <bundle>mvn:net.nanthrax.karaf.workshop/net.nanthrax.karaf.workshop.camel/${project.version}</bundle>
+    </feature>
+
+</features>

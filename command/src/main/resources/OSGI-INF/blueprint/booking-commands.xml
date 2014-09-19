@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="bookingService" interface="net.nanthrax.karaf.workshop.common.BookingService"/>
+
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command>
+            <action class="net.nanthrax.karaf.workshop.command.ListCommand">
+                <property name="bookingService" ref="bookingService"/>
+            </action>
+        </command>
+        <command>
+            <action class="net.nanthrax.karaf.workshop.command.AddCommand">
+                <property name="bookingService" ref="bookingService"/>
+            </action>
+        </command>
+        <command>
+            <action class="net.nanthrax.karaf.workshop.command.DeleteCommand">
+                <property name="bookingService" ref="bookingService"/>
+            </action>
+            <completers>
+                <ref component-id="bookingCompleter"/>
+                <null/>
+            </completers>
+        </command>
+        <command>
+            <action class="net.nanthrax.karaf.workshop.command.StatusCommand">
+                <property name="bookingService" ref="bookingService"/>
+            </action>
+            <completers>
+                <ref component-id="bookingCompleter"/>
+                <null/>
+            </completers>
+        </command>
+    </command-bundle>
+
+    <bean id="bookingCompleter" class="net.nanthrax.karaf.workshop.command.completer.BookingCompleter">
+        <property name="bookingService" ref="bookingService" />
+    </bean>
+
+</blueprint>
